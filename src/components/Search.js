@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import '../styles/Search.css';
 import { ToggleColumns } from './ToggleColumns';
@@ -6,7 +6,9 @@ import { ProductList } from './ProductList';
 import { FilterForm } from './FilterForm';
 
 export const Search = (props) => {
-  const [price, setPrice] = useState({ priceFrom: '', priceTo: '' });
+  const [price, setPrice] = useState({ priceFrom: 0, priceTo: Infinity });
+
+  const [dataProduct, setDataProduct] = useState([]);
 
   const [columns, setColumns] = useState({
     id: true,
@@ -18,31 +20,49 @@ export const Search = (props) => {
 
   const onPriceInputChange = (name, value) => {
     // TODO: implement price change handler
-  }
+    console.log(value);
+    if(name === 'priceTo' && value === '') {
+      value = Infinity
+    }
+    setPrice({ ...price, [name]: value });
 
+  }
   const onCheckboxClick = (name, checked) => {
+    setColumns({});
     // TODO: implement checkbox click handler
   }
+  const priceFrom = price.priceFrom;
+  const priceTo = parseFloat(price.priceTo);
 
-  const filterProducts = () => {
+  const filterProducts = (data) => {
     // TODO: implement handler for filtering products by price range
+    setDataProduct(data.filter((product) => priceFrom <= product.price && priceTo >= product.price));
   }
 
-  let displayedProducts = [];
+  useEffect(() => {
+    const requestOption = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    }
+    fetch("http://localhost:3001/products", requestOption)
+      .then((response) => response.json())
+      .then((data) => filterProducts(data));
+  })
+
   return (
     <div className="Products">
       <FilterForm
-        priceFrom={''}
-        priceTo={''}
-        onPriceInputChange={''} />
+        priceFrom={priceFrom}
+        priceTo={priceTo}
+        onPriceInputChange={onPriceInputChange} />
 
       <ToggleColumns
         onCheckboxClick={''}
-        columns={''} />
+        columns={columns} />
 
       <ProductList
-        products={displayedProducts}
-        columns={''} />
+        products={dataProduct}
+        columns={columns} />
     </div>
   );
 }

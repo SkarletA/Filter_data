@@ -8,9 +8,9 @@ export const ToggleColumns = (props) => {
   // TODO: Bind handlers and props
   return (
     <div className="toggle-columns">
-      { 
+      {
         Object.keys(props.columns).map((column, index) => {
-          return ( 
+          return (
           <div key={index}>
             <label htmlFor={column}>
               {column}

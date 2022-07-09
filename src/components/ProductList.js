@@ -7,7 +7,7 @@ export const ProductList = (props) => {
   return (
     <div id="product-list">
       <header>
-        <strong>Product List (0 items)</strong>
+        <strong>Product List ({props.products.length} items)</strong>
       </header>
       <table>
         <thead>
@@ -19,6 +19,14 @@ export const ProductList = (props) => {
           </tr>
         </thead>
         <tbody>
+          {props.products.map((product) => (
+            <tr key={product.id}>
+              <th>{product.id}{props.columns.id}</th>
+              <th>{product.name}</th>
+              <th>{product.department}</th>
+              <th>{product.price}</th>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
