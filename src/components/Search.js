@@ -11,11 +11,11 @@ export const Search = (props) => {
   const [dataProduct, setDataProduct] = useState([]);
 
   const [columns, setColumns] = useState({
-    id: true,
-    name: true,
-    department: true,
-    price: true,
-    currency: true,
+    id: false,
+    name: false,
+    department: false,
+    price: false,
+    currency: false,
   });
 
   const onPriceInputChange = (name, value) => {
@@ -28,7 +28,7 @@ export const Search = (props) => {
 
   }
   const onCheckboxClick = (name, checked) => {
-    setColumns({});
+    setColumns({...columns, [name]: checked});
     // TODO: implement checkbox click handler
   }
   const priceFrom = price.priceFrom;
@@ -57,7 +57,7 @@ export const Search = (props) => {
         onPriceInputChange={onPriceInputChange} />
 
       <ToggleColumns
-        onCheckboxClick={''}
+        onCheckBoxClick={onCheckboxClick}
         columns={columns} />
 
       <ProductList
