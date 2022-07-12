@@ -1,5 +1,6 @@
 .Products {
   display: flex;
+  background-color: bisque;
 }
 
 #product-list {
@@ -35,7 +36,9 @@ input[type=submit]:hover {
 
 div {
   border-radius: 5px;
-  background-color: #f2f2f2;
+  background-image: url("https://svgshare.com/i/j1H.svg");
+  background-repeat: no-repeat;
+  color: #ff5e71;
   padding: 20px;
 }
 
@@ -60,9 +63,11 @@ ul li {
   justify-content: space-between;
 }
 
-table, td, th {  
-  border: 1px solid #ddd;
+table, td, th {
+  border: 1px solid #ff5e71;
   text-align: left;
+  color: #ff5e71;
+  background-color: aliceblue;
 }
 
 table {
@@ -72,4 +77,12 @@ table {
 
 th, td {
   padding: 15px;
+}
+
+.titleProduct {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff5e71;
+  font-size: 2em;
 }

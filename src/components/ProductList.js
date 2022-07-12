@@ -7,7 +7,7 @@ export const ProductList = (props) => {
   return (
     <div id="product-list">
       <header>
-        <strong>Product List ({props.products.length} items)</strong>
+        <strong className='titleProduct'>Product List ({props.products.length} items)</strong>
       </header>
       <table>
         <thead>
